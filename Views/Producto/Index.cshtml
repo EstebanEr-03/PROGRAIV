@@ -1,0 +1,57 @@
+﻿@model System.Data.DataTable
+@using System.Data
+@{
+    ViewData["Title"] = "Lista de Productos";
+}
+<h1>@ViewData["Title"]</h1>
+
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Create", "Producto")'" >Nuevo Producto</button>
+
+<p>Esta es la vista de la lista de productos</p>
+
+<table>
+    <thead>
+        <tr>
+            @foreach (DataColumn column in Model.Columns)
+            {
+                <th>@column.ColumnName</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                @foreach (DataColumn column in Model.Columns)
+                {
+                    <td>@row[column.ColumnName]</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <h1>Nueva tabla</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Acciones </th>
+            </tr>
+        </thead>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>
+                @foreach (DataColumn column in Model.Columns)
+                {
+                    <td>@row[column.ColumnName]</td>
+                }
+            </tr>
+        }
+
+    </table>
+</div>
